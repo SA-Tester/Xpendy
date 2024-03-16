@@ -1,25 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".CompareFragment">
 
     <TextView
-        android:id="@+id/compareFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Compare"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
+        android:id="@+id/textView"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical"
+        android:text="Select a Month"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/comparisionPieChart"
+        app:layout_constraintEnd_toStartOf="@id/spinner1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.409" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="136dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="44dp"
+        android:gravity="end"
+        android:scaleType="center"
+        android:spinnerMode="dropdown"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/comparisionPieChart"
+        android:layout_width="344dp"
+        android:layout_height="245dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="281dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Comparision"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comparisionPieChart" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="339dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textView2">
+
+        <TableRow
+            android:background="@color/blue"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Criteria" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Status" />
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
