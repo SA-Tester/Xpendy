@@ -16,17 +16,17 @@ import com.example.xpendy.R
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private lateinit var colorTextView: TextView
-    private val colors = arrayOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW) // Add more colors as needed
-    private var selectedColor = Color.RED // Default selected color
+    private val colors = arrayOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW)
+    private var selectedColor = Color.RED
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val switch: Switch = view.findViewById(R.id.switch2)
-        val logoutButton: Button = view.findViewById(R.id.logoutButton) // Assuming the button id is logoutButton
+        val logoutButton: Button = view.findViewById(R.id.logoutButton)
         colorTextView = view.findViewById(R.id.colorTextView)
 
-        // Initialize the color text based on the current theme and color
+
         updateColorText()
 
         switch.isChecked = when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -44,14 +44,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             }
         }
 
-        // Set onClickListener for the color text to show color picker dialog
         colorTextView.setOnClickListener {
             showColorPickerDialog()
         }
 
-        // Set onClickListener for the logout button
         logoutButton.setOnClickListener {
-            // Perform logout action here
             logout()
         }
     }
@@ -76,13 +73,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun logout() {
-        // Perform logout action here
-        // For example, navigate back to the MainActivity
         val intent = Intent(requireContext(), MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         requireActivity().finish()
-        // You may also perform additional cleanup tasks if needed
-        // For example, clearing user session data, etc.
     }
 }
