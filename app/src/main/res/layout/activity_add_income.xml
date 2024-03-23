@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddIncome">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216">
+
+        <Button
+            android:id="@+id/btn_timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/green"
+            android:text="Date"
+            app:icon="@drawable/baseline_calendar_month_24" />
+
+        <TextView
+            android:id="@+id/show_Date"
+            android:layout_width="224dp"
+            android:layout_height="42dp"
+            android:gravity="center|right"
+            android:text="DD/MM/YY"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.272">
+
+        <!-- Left side with icon -->
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@color/green"
+            android:gravity="center_vertical"
+            android:padding="1dp">
+
+            <ImageView
+                android:layout_width="102dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_note_alt_24"
+                android:tint="@android:color/white"
+
+                />
+
+        </LinearLayout>
+
+        <!-- Right side with input text field -->
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:hint="Note"
+            android:padding="8dp"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="310dp"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:ems="10"
+        android:gravity="right|center"
+        android:inputType="textPersonName"
+        android:text="0.00"
+        android:textSize="20pt"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/buAC"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
+    <Button
+        android:id="@+id/buAC"
+        android:layout_width="30pt"
+        android:layout_height="30pt"
+        android:layout_weight="1"
+        android:background="@color/grey"
+        android:onClick="numberClear"
+        android:text="AC"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918">
+
+    </Button>
+
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="410dp"
+        android:layout_height="295dp"
+        android:layout_marginBottom="116dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1pt">
+
+            <Button
+                android:id="@+id/bu1"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/bu2"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="2">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bu3"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="3">
+
+            </Button>
+
+
+            <Button
+                android:id="@+id/buPlus"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text="+">
+
+            </Button>
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1pt">
+
+
+            <Button
+                android:id="@+id/bu4"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="4">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bu5"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="5">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bu6"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="6">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buMinuz"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text="-">
+
+            </Button>
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1pt">
+
+
+            <Button
+                android:id="@+id/bu7"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="7">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bu8"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="8">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bu9"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="9">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buMultiply"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text="x">
+
+            </Button>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1pt">
+
+
+            <Button
+                android:id="@+id/buPoint"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text=".">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bu0"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:onClick="numberEvent"
+                android:text="0">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buEqual"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text="=">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buDivide"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text="/">
+
+            </Button>
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/submitIncome"
+        android:layout_width="101dp"
+        android:layout_height="45dp"
+        android:layout_weight="1"
+
+        android:text="Add"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+        app:layout_constraintVertical_bias="0.45">
+
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
