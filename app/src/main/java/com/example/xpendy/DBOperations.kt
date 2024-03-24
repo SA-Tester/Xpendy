@@ -7,11 +7,6 @@ class DBOperations {
     fun addIncome(context: Context, month: String, income: String){
         // INPUT FORMAT: "[Food: 25000, Bills: 8000, Fuel: 7000]"
         val db = DBHandler(context, null)
-
-        //val dropdown: Spinner = view.findViewById(R.id.spinner1)
-        // val month = dropdown.selectedItem.toString()
-        //val income = "[Salary: 50000]"
-
         db.addIncome(month, income)
     }
 
