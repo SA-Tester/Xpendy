@@ -1,5 +1,6 @@
 package com.example.xpendy
 
+import SettingsFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(HomeFragment())
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener{ item ->
+        binding.bottomNavigationView.setOnItemSelectedListener{ item ->
             when(item.itemId){
                 R.id.home -> replaceFragment(HomeFragment());
                 R.id.money -> replaceFragment(MoneyFragment());
