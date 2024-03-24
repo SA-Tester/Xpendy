@@ -1,37 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomeFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout-->
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="left"
+    android:background="#5D8392"
+    tools:context=".MainActivity">
+
 
     <TextView
-        android:id="@+id/homeFragment"
+        android:id="@+id/welcomeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="10dp"
+        android:text="hello!! \nXpendy User\n"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/rounded_rectangle"
+        >
+
+        <TextView
+            android:id="@+id/availableblncheadingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Balance,"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/availablebalanceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:layout_margin="16dp"/>
+
+    </LinearLayout>
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="1dp"-->
+    <!--        android:background="#000000" />-->
+
+    <LinearLayout
+        android:id="@+id/parentLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/rounded_rectangle"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/incomeheadingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="50dp"
+            android:text="Total Income"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/incomeamountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:layout_margin="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/parentLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/rounded_rectangle"
+        >
+
+        <TextView
+            android:id="@+id/expensesheadingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Expenses"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/expensesamountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:layout_margin="16dp"/>
+    </LinearLayout>
+
+</LinearLayout>
