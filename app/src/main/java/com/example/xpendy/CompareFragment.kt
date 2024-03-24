@@ -1,7 +1,5 @@
 package com.example.xpendy
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +10,13 @@ import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import kotlin.math.roundToInt
 
 
 class CompareFragment : Fragment() {
@@ -28,28 +26,31 @@ class CompareFragment : Fragment() {
     private lateinit var incomeTable: TableLayout
     private lateinit var expenseTable: TableLayout
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_compare, container, false)
     }
 
-    override fun onViewCreated(view1: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view1, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        initDropdown(view1)
-        val dropdown: Spinner = view1.findViewById(R.id.spinner1)
+        // Adding Test Data
+        // addTestData("Mar")
+
+        initDropdown(view)
+        val dropdown: Spinner = view.findViewById(R.id.spinner1)
         dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view1: View, position: Int, id: Long) {
                 val selectedMonth = dropdown.selectedItem.toString()
-                initPieCharts(view1, selectedMonth)
-                initIncomeTable(view1, selectedMonth)
+                initPieCharts(view, selectedMonth)
+                initIncomeTable(view, selectedMonth)
+                initExpenseTable(view, selectedMonth)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Do nothing
             }
         }
-//        addTestDataIncome(view)
-//        addTestDataExpense(view)
     }
 
     private fun initDropdown(view: View){
@@ -66,17 +67,21 @@ class CompareFragment : Fragment() {
     }
 
     private fun initPieCharts(view: View, selectedMonth: String){
+        // Creating an object from the class
+        val dbCursor = DBOperations()
+        val formats = Formats()
+
         val entries1 = ArrayList<PieEntry>()
         val entries2 = ArrayList<PieEntry>()
 
         pieChart1 = view.findViewById(R.id.incomePieChart)
         pieChart2 = view.findViewById(R.id.expensePieChart)
 
-        val incomeData = readIncome(requireContext(), selectedMonth)
-        val expenseData = readExpense(requireContext(), selectedMonth)
+        val incomeData = dbCursor.readIncome(requireContext(), selectedMonth)
+        val expenseData = dbCursor.readExpense(requireContext(), selectedMonth)
 
-        val resultMap1 = formatStringToArray(incomeData)
-        val resultMap2 = formatStringToArray(expenseData)
+        val resultMap1 = formats.formatStringToArray(incomeData)
+        val resultMap2 = formats.formatStringToArray(expenseData)
 
         for ((key, value) in resultMap1) {
             entries1.add(PieEntry(value, key))
@@ -101,89 +106,88 @@ class CompareFragment : Fragment() {
     }
 
     private fun initIncomeTable(view: View, selectedMonth: String){
+        val dbCursor = DBOperations()
+        val formats = Formats()
+
         // Criteria, %, status
         incomeTable = view.findViewById(R.id.incomeTableLayout)
-        val data = listOf(formatStringToArray(readIncome(requireContext(), selectedMonth)))
+        formats.cleanTable(incomeTable)
+        val data = formats.formatStringToArray(dbCursor.readIncome(requireContext(), selectedMonth))
+
+        var total = 0f
+        for (row in data) {
+            for ((key, value) in listOf(row)) {
+                total += value
+            }
+        }
 
         for (row in data) {
             val tableRow = TableRow(requireContext())
 
-            for (item in row) {
-                val textView = TextView(requireContext())
-                textView.text = item.toString()
-                textView.setPadding(10, 10, 10, 10)
-                tableRow.addView(textView)
+            for ((key, value) in listOf(row)) {
+                val itemText = TextView(requireContext())
+                itemText.width = 320
+                itemText.text = key
+                itemText.setPadding(20, 20, 20, 20)
+                itemText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                tableRow.addView(itemText)
+
+                val amountText = TextView(requireContext())
+                amountText.text = ((value/total) *100).roundToInt().toString() + "%"
+                amountText.width = 320
+                amountText.setPadding(20,20,20,20)
+                amountText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                tableRow.addView(amountText)
             }
             incomeTable.addView(tableRow)
         }
     }
 
-    private fun initExpenseTable(){}
+    private fun initExpenseTable(view: View, selectedMonth: String){
+        val dbCursor = DBOperations()
+        val formats = Formats()
 
-    private fun formatStringToArray(input: String): Map<String, Float> {
-        val regex = Regex("""(\w+)\s*:\s*(\d+)""")
-        val matchResults = regex.findAll(input)
-        val resultMap = mutableMapOf<String, Float>()
-        for (matchResult in matchResults) {
-            val (key, value) = matchResult.destructured
-            resultMap[key] = value.toFloat()
-        }
-        return resultMap
-    }
+        // Criteria, %, status
+        expenseTable = view.findViewById(R.id.expenseTableLayout)
+        formats.cleanTable(expenseTable)
 
-    @SuppressLint("Range")
-    private fun readIncome(context: Context, month: String): String{
-        val dbHandler = DBHandler(context, null)
-        val incomeCursor = dbHandler.readIncome(month)
-        var income = ""
+        val data = formats.formatStringToArray(dbCursor.readExpense(requireContext(), selectedMonth))
 
-        if (incomeCursor != null) {
-            while (incomeCursor.moveToNext()) {
-                income = incomeCursor.getString(incomeCursor.getColumnIndex(DBHandler.INCOME_COL))
+        var total = 0f
+        for (row in data) {
+            for ((key, value) in listOf(row)) {
+                total += value
             }
         }
-        return income
-        incomeCursor?.close()
-    }
 
-    @SuppressLint("Range")
-    private fun readExpense(context: Context, month: String): String{
-        val dbHandler = DBHandler(context, null)
-        val expenseCursor = dbHandler.readExpense(month)
-        var expense = ""
+        for (row in data) {
+            val tableRow = TableRow(requireContext())
 
-        if (expenseCursor != null) {
-            while (expenseCursor.moveToNext()) {
-                expense = expenseCursor.getString(expenseCursor.getColumnIndex(DBHandler.EXPENSE_COL))
+            for ((key, value) in listOf(row)) {
+                val itemText = TextView(requireContext())
+                itemText.width = 320
+                itemText.text = key
+                itemText.setPadding(20, 20, 20, 20)
+                itemText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                tableRow.addView(itemText)
+
+                val amountText = TextView(requireContext())
+                amountText.text = ((value/total) *100).roundToInt().toString() + "%"
+                amountText.width = 320
+                amountText.setPadding(20,20,20,20)
+                amountText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                tableRow.addView(amountText)
             }
+            expenseTable.addView(tableRow)
         }
-        return expense
-        expenseCursor?.close()
     }
 
+    private fun addTestData(month: String){
+        val income = "[Sales: 40000, Rentals: 20000]"
+        val expenses = "[Food: 5000, Travel: 6000, Clothing: 3000]"
 
-    // TEST DATA ===================================================================================
-    private fun addTestDataIncome(view: View){
-        val db = DBHandler(requireContext(), null)
-
-        val dropdown: Spinner = view.findViewById(R.id.spinner1)
-
-        val month = dropdown.selectedItem.toString()
-        val income = "[Salary: 50000]"
-
-        db.addIncome(month, income)
+        val dbCursor = DBOperations()
+        dbCursor.addExpense(requireContext(), month, expenses)
+        dbCursor.addIncome(requireContext(), month, income )
     }
-
-    private fun addTestDataExpense(view: View){
-        val db = DBHandler(requireContext(), null)
-
-        val dropdown: Spinner = view.findViewById(R.id.spinner1)
-
-        val month = dropdown.selectedItem.toString()
-        val expense = "[Food: 25000, Bills: 8000, Fuel: 7000]"
-
-        db.addExpense(month, expense)
-    }
-
-    //==============================================================================================
 }
