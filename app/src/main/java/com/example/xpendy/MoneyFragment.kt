@@ -1,10 +1,13 @@
 package com.example.xpendy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +37,26 @@ class MoneyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_money, container, false)
+        val view = inflater.inflate(R.layout.fragment_money, container, false)
+
+        // Find the addIncomeButton within the inflated view
+        val addIncomeButton: Button = view.findViewById(R.id.addIncomeButton)
+        val addExpenseButton: Button = view.findViewById(R.id.addExpenseButton)
+
+        // Set OnClickListener for the addIncomeButton
+        addIncomeButton.setOnClickListener {
+            val intent = Intent(activity, AddIncome::class.java)
+            startActivity(intent)
+        }
+
+        addExpenseButton.setOnClickListener {
+            val intent = Intent(activity, AddExpense::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
+
 
     companion object {
         /**
@@ -56,4 +77,7 @@ class MoneyFragment : Fragment() {
                 }
             }
     }
+
+
+
 }

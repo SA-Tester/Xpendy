@@ -15,7 +15,13 @@
         android:theme="@style/Theme.Xpendy"
         tools:targetApi="31">
         <activity
-            android:name=".CompareFragment"
+            android:name=".AddExpense"
+            android:exported="false" />
+        <activity
+            android:name=".AddIncome"
+            android:exported="false" />
+        <activity
+            android:name=".ComparisionActivity"
             android:exported="false"
             android:label="@string/title_activity_comparision"
             android:theme="@style/Theme.Xpendy" />
