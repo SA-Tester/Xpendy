@@ -11,15 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Calendar
 
-class AddIncome : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+class AddIncome : AppCompatActivity() {
 
-    var day = 0
-    var month = 0
-    var year = 0
-
-    var saveDay = 0
-    var saveMonth = 0
-    var saveYear = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,33 +24,8 @@ class AddIncome : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             insets
         }
 
-        pickDate()
+
     }
 
-    private fun getDateCalendar() {
-        val cal = Calendar.getInstance()
-        day = cal.get(Calendar.DAY_OF_MONTH)
-        month = cal.get(Calendar.MONTH)
-        year = cal.get(Calendar.YEAR)
-    }
 
-    private fun pickDate() {
-        val btnTimePicker: Button = findViewById(R.id.btn_timePicker)
-        btnTimePicker.setOnClickListener {
-            getDateCalendar()
-            DatePickerDialog(this, this, year, month, day).show()
-        }
-    }
-
-    fun numberEvent(view: View) {}
-    fun numberClear(view: View) {}
-
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        saveDay = dayOfMonth
-        saveMonth = month
-        saveYear = year
-        getDateCalendar()
-        val showDate : TextView   = findViewById(R.id.show_Date)
-        showDate.text = "$saveDay-$saveMonth-$saveYear"
-    }
 }
