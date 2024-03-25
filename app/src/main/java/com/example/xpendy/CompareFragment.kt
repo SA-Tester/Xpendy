@@ -35,7 +35,8 @@ class CompareFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Adding Test Data
-        // addTestData("Mar")
+        addTestData("Jan", "[Sales: 10000, Rentals: 30000]", "[Food: 5000, Bills: 4500, Clothing: 7000]")
+        addTestData("Feb", "[Salary: 50000, Sales: 4000]", "[Food: 5000, Bills: 4500, Fuel: 5000]")
 
         initDropdown(view)
         val dropdown: Spinner = view.findViewById(R.id.spinner1)
@@ -182,10 +183,7 @@ class CompareFragment : Fragment() {
         }
     }
 
-    private fun addTestData(month: String){
-        val income = "[Sales: 40000, Rentals: 20000]"
-        val expenses = "[Food: 5000, Travel: 6000, Clothing: 3000]"
-
+    private fun addTestData(month: String, income: String, expenses: String){
         val dbCursor = DBOperations()
         dbCursor.addExpense(requireContext(), month, expenses)
         dbCursor.addIncome(requireContext(), month, income )
