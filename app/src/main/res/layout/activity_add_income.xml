@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".AddIncome">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -18,19 +17,15 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Income"
+        app:title="Add Income"
+        app:navigationIcon="@drawable/baseline_arrow_back_24"
         tools:layout_editor_absoluteX="-16dp" />
-
-
-    <!-- Add a note -->
-
 
     <Button
         android:id="@+id/submitIncome"
-        android:layout_width="126dp"
-        android:layout_height="47dp"
+        android:layout_width="144dp"
+        android:layout_height="68dp"
         android:layout_marginBottom="108dp"
-
         android:layout_weight="1"
         android:text="Add"
         android:textSize="20sp"
@@ -38,7 +33,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent">
-
     </Button>
 
     <EditText
@@ -48,11 +42,9 @@
         android:layout_marginBottom="168dp"
         android:layout_weight="1"
         android:drawableStart="@null"
-        android:drawableLeft="@null"
         android:drawableEnd="@android:drawable/ic_menu_edit"
-        android:drawableRight="@null"
         android:drawablePadding="8dp"
-        android:hint="Enter income amount"
+        android:hint="@string/enter_income_amount"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/submitIncome"
         tools:layout_editor_absoluteX="-16dp" />
@@ -83,24 +75,20 @@
                 android:layout_width="102dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/baseline_note_alt_24"
-                android:tint="@android:color/white"
-
-                />
-
+                app:tint="@android:color/white" />
         </LinearLayout>
 
         <!-- Right side with input text field -->
         <EditText
-            android:id="@+id/note"
+            android:id="@+id/note_income"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_weight="3"
             android:background="@android:color/transparent"
             android:gravity="center"
-            android:hint="Note"
+            android:hint="@string/note"
             android:padding="8dp"
             android:textSize="18sp" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
