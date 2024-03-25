@@ -56,6 +56,18 @@ class DBHandler(context: Context, factory: SQLiteDatabase.CursorFactory?):
             db.close()
         }
 
+        fun removeIncome(month: String){
+            val db = this.writableDatabase
+            db.delete(TABLE_NAME_1, "$MONTH_COL = ?", arrayOf(month))
+            db.close()
+        }
+
+        fun removeExpense(month: String){
+            val db = this.writableDatabase
+            db.delete(TABLE_NAME_2, "$MONTH_COL = ?", arrayOf(month))
+            db.close()
+        }
+
         fun readIncome(month: String): Cursor? {
             val db = this.readableDatabase
             return db.rawQuery("SELECT * FROM $TABLE_NAME_1 WHERE $MONTH_COL = ?", arrayOf(month))

@@ -13,10 +13,20 @@ class DBOperations {
 
     fun addExpense(context: Context, month: String, expense: String){
         // INPUT FORMAT: "[Food: 25000, Bills: 8000, Fuel: 7000]"
-
         val db = DBHandler(context, null)
         db.addExpense(month, expense)
     }
+
+    fun removeIncome(context: Context, month: String){
+        val db = DBHandler(context, null)
+        db.removeIncome(month)
+    }
+
+    fun removeExpense(context: Context, month: String){
+        val db = DBHandler(context, null)
+        db.removeExpense(month)
+    }
+
     @SuppressLint("Range")
     fun readIncome(context: Context, month: String): String{
         val dbHandler = DBHandler(context, null)
