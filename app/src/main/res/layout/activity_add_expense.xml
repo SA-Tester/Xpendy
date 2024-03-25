@@ -21,24 +21,16 @@
         app:layout_constraintVertical_bias="0.0"
         app:title="Expense"
         tools:layout_editor_absoluteX="-16dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Icon -->
 
 
-        <!-- EditText -->
-
-    </LinearLayout>
+    <!-- Add note -->
 
 
     <Button
         android:id="@+id/submitIncome"
         android:layout_width="126dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="124dp"
 
         android:layout_weight="1"
         android:text="Remove"
@@ -54,7 +46,7 @@
         android:id="@+id/expense_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="304dp"
+        android:layout_marginBottom="148dp"
         android:layout_weight="1"
         android:drawableStart="@null"
         android:drawableLeft="@null"
@@ -66,8 +58,51 @@
         app:layout_constraintBottom_toTopOf="@+id/submitIncome"
         tools:layout_editor_absoluteX="0dp" />
 
-    <!-- Add a back button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/expense_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.708">
 
+        <!-- Left side with icon -->
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@color/green"
+            android:gravity="center_vertical"
+            android:padding="1dp">
+
+            <ImageView
+                android:layout_width="102dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_note_alt_24"
+                android:tint="@android:color/white"
+
+                />
+
+        </LinearLayout>
+
+        <!-- Right side with input text field -->
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:hint="Note"
+            android:padding="8dp"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
