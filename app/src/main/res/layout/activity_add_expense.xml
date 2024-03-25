@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".AddExpense">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -19,28 +18,9 @@
         app:layout_constraintBottom_toTopOf="@+id/expense_amount"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Expense"
+        app:title="Add Expense"
+        app:navigationIcon="@drawable/baseline_arrow_back_24"
         tools:layout_editor_absoluteX="-16dp" />
-
-
-    <!-- Add note -->
-
-
-    <Button
-        android:id="@+id/submitIncome"
-        android:layout_width="126dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="124dp"
-
-        android:layout_weight="1"
-        android:text="Remove"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </Button>
 
     <EditText
         android:id="@+id/expense_amount"
@@ -55,7 +35,7 @@
         android:drawablePadding="8dp"
         android:hint="Enter expense amount"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/submitIncome"
+        app:layout_constraintBottom_toTopOf="@+id/submitExpense"
         tools:layout_editor_absoluteX="0dp" />
 
     <LinearLayout
@@ -84,25 +64,35 @@
                 android:layout_width="102dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/baseline_note_alt_24"
-                android:tint="@android:color/white"
-
-                />
+                app:tint="@android:color/white" />
 
         </LinearLayout>
 
         <!-- Right side with input text field -->
         <EditText
-            android:id="@+id/note"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/note_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
             android:layout_weight="3"
             android:background="@android:color/transparent"
             android:gravity="center"
             android:hint="Note"
             android:padding="8dp"
             android:textSize="18sp" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/submitExpense"
+        android:layout_width="144dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="124dp"
+        android:layout_weight="1"
+        android:text="Remove"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
