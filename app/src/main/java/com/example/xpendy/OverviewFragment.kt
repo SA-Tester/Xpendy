@@ -26,14 +26,15 @@ class OverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Call addTestData
-        addTestData(getCurrentMonth())
+        // addTestData(getCurrentMonth())
+        var formats = Formats()
 
         // Initialize pie chart
         pieChart = view.findViewById(R.id.pieChart)
 
         // Set current month in TextView
         val currentMonthTextView = view.findViewById<TextView>(R.id.month)
-        val currentMonth = getCurrentMonth()
+        val currentMonth = formats.getCurrentMonth()
         val fullMonthName = getFullMonthName(currentMonth)
         currentMonthTextView.text = fullMonthName
 
@@ -59,14 +60,16 @@ class OverviewFragment : Fragment() {
     }
 
     private fun displayExpenseData() {
-        val currentMonth = getCurrentMonth()
+        var formats = Formats()
+        val currentMonth = formats.getCurrentMonth()
         val expenseData = DBOperations().readExpense(requireContext(), currentMonth)
         val formattedData = Formats().formatStringToArray(expenseData)
         displayPieChart(formattedData)
     }
 
     private fun displayIncomeData() {
-        val currentMonth = getCurrentMonth()
+        var formats = Formats()
+        val currentMonth = formats.getCurrentMonth()
         val incomeData = DBOperations().readIncome(requireContext(), currentMonth)
         val formattedData = Formats().formatStringToArray(incomeData)
         displayPieChart(formattedData)
@@ -82,16 +85,6 @@ class OverviewFragment : Fragment() {
         val pieData = PieData(dataSet)
         pieChart.data = pieData
         pieChart.invalidate()
-    }
-
-    private fun getCurrentMonth(): String {
-        val calendar = Calendar.getInstance()
-        val monthIndex = calendar.get(Calendar.MONTH)
-        val monthsArray = arrayOf(
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        )
-        return monthsArray[monthIndex]
     }
 
     private fun getFullMonthName(abbreviation: String): String {
